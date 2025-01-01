@@ -26,6 +26,6 @@ func main() {
 
 	http.HandleFunc("/hello", hello)
 
-	fmt.Println("Starting server on :8888")
-	http.ListenAndServe(":8888", nil)
+	fmt.Println("Starting server on 192.168.1.192:8888")
+	http.ListenAndServe("192.168.1.192:8888", nil)
 }

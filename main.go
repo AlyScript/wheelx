@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -33,12 +34,18 @@ func loggingFileServerHandler(next http.Handler) http.Handler {
 
 func main() {
 
+	// Define a flag for the port number
+	port := flag.String("p", "8888", "Port to run the server on.")
+	flag.Parse()
+
 	logFile, err := os.OpenFile("server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatal("Failed to open log file")
 	}
 	defer logFile.Close()
 	log.SetOutput(logFile)
+
+	var socket string = "192.168.1.192:" + *port
 
 	// This is the file server that will serve the files in the current directory.
 	// Better practice is to serve files from a specific directory (typically name this "static").
@@ -47,6 +54,6 @@ func main() {
 
 	// http.HandleFunc("/hello", hello)
 
-	fmt.Println("Starting server on 192.168.1.192:8888")
-	http.ListenAndServe("192.168.1.192:8888", nil)
+	fmt.Println("Starting server on " + socket)
+	http.ListenAndServe(socket, nil)
 }

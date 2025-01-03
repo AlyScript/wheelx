@@ -36,6 +36,10 @@ func main() {
 
 	// Define a flag for the port number
 	port := flag.String("p", "8888", "Port to run the server on.")
+	flag.Usage = func() {
+		fmt.Println("Usage: go run main.go -p <port>")
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 
 	logFile, err := os.OpenFile("server.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)

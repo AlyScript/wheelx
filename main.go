@@ -36,8 +36,9 @@ func main() {
 
 	// Define a flag for the port number
 	port := flag.String("p", "8888", "Port to run the server on.")
+	ip := flag.String("i", "192.168.1.192", "IP address to run the server on.")
 	flag.Usage = func() {
-		fmt.Println("Usage: go run main.go -p <port>")
+		fmt.Printf("\n%s\n%s\n", "Usage: go run main.go -p <port>", "Usage: go run main.go -p <port> -i <ip>")
 		flag.PrintDefaults()
 	}
 	flag.Parse()
@@ -49,7 +50,7 @@ func main() {
 	defer logFile.Close()
 	log.SetOutput(logFile)
 
-	var socket string = "192.168.1.192:" + *port
+	var socket string = *ip + ":" + *port
 
 	// This is the file server that will serve the files in the current directory.
 	// Better practice is to serve files from a specific directory (typically name this "static").

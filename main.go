@@ -60,5 +60,6 @@ func main() {
 	// http.HandleFunc("/hello", hello)
 
 	fmt.Println("Starting server on " + socket)
+	log.Printf("Starting server on %s\n", socket)
 	http.ListenAndServe(socket, nil)
 }

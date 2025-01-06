@@ -9,6 +9,11 @@ import (
 	"time"
 )
 
+var (
+	startTime = time.Now()
+	requestCount int
+)
+
 /*
 This is the function that will be called when the user visits the page. Handlefunc takes two arguments, the path and the function to be called.
 Takes two arguments, the response writer and the request.
@@ -24,6 +29,12 @@ Takes two arguments, the response writer and the request.
 // 	w.WriteHeader(http.StatusOK)
 // 	fmt.Fprintf(w, "Hello, World!")
 // }
+
+func infoHandler(w http.ResponseWriter, r *http.Request) {
+	uptime := time.Since(startTime)
+	requestCount++
+	fmt.Fprintf(w, "Server Start Time: %s\nUptime: %s\nRequest Count: %d\n", startTime.Format(time.RFC3339), uptime, requestCount)
+}
 
 func loggingFileServerHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -57,6 +68,7 @@ func main() {
 	fs := http.FileServer(http.Dir("."))
 	http.Handle("/", loggingFileServerHandler(fs))
 
+	http.HandleFunc("/info", infoHandler)
 	// http.HandleFunc("/hello", hello)
 
 	fmt.Println("Starting server on " + socket)

@@ -12,6 +12,7 @@ import (
 var (
 	startTime = time.Now()
 	requestCount int
+	logFile *os.File
 )
 
 /*
@@ -33,7 +34,7 @@ Takes two arguments, the response writer and the request.
 func infoHandler(w http.ResponseWriter, r *http.Request) {
 	uptime := time.Since(startTime)
 	requestCount++
-	fmt.Fprintf(w, "Server Start Time: %s\nUptime: %s\nRequest Count: %d\n", startTime.Format(time.RFC3339), uptime, requestCount)
+	fmt.Fprintf(w, "Welcome to wheelx!\n Server Start Time: %s\nUptime: %s\nRequest Count: %d\n\n Author: Adam Aly", startTime.Format(time.RFC3339), uptime, requestCount)
 }
 
 func loggingFileServerHandler(next http.Handler) http.Handler {

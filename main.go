@@ -46,6 +46,11 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to wheelx!\n Server Start Time: %s\nUptime: %s\nRequest Count: %d\n", startTime.Format(time.RFC3339), uptime, requestCount)
 }
 
+func timeHandler(w http.ResponseWriter, r *http.Request) {
+    currentTime := time.Now().Format(time.RFC1123)
+    fmt.Fprintf(w, "Current server time: %s\n", currentTime)
+}
+
 func loggingFileServerHandler(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Request received from %s at %s\n", r.RemoteAddr, time.Now().Format((time.RFC3339)))
@@ -79,6 +84,7 @@ func main() {
 	http.Handle("/", loggingFileServerHandler(fs))
 
 	http.HandleFunc("/info", infoHandler)
+	http.HandleFunc("/time", timeHandler)
 	// http.HandleFunc("/hello", hello)
 	http.HandleFunc("/", customNotFoundHandler)
 

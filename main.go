@@ -11,12 +11,14 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"sync"
 )
 
 var (
-	startTime = time.Now()
-	requestCount int
-	logFile *os.File
+	startTime 		= time.Now()
+	requestCount 	int
+	logFile 		*os.File
+	mu 				sync.Mutex
 )
 
 /*
@@ -49,6 +51,12 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 func timeHandler(w http.ResponseWriter, r *http.Request) {
     currentTime := time.Now().Format(time.RFC1123)
     fmt.Fprintf(w, "Current server time: %s\n", currentTime)
+}
+
+func statsHandler(w http.ResponseWriter, r *http.Request) {
+    mu.Lock()
+    defer mu.Unlock()
+    fmt.Fprintf(w, "Total requests received: %d\n", requestCount)
 }
 
 func loggingFileServerHandler(next http.Handler) http.Handler {
@@ -85,6 +93,7 @@ func main() {
 
 	http.HandleFunc("/info", infoHandler)
 	http.HandleFunc("/time", timeHandler)
+	http.HandleFunc("/stats", statsHandler)
 	// http.HandleFunc("/hello", hello)
 	http.HandleFunc("/", customNotFoundHandler)
 

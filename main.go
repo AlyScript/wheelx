@@ -94,8 +94,7 @@ func main() {
 	http.HandleFunc("/info", infoHandler)
 	http.HandleFunc("/time", timeHandler)
 	http.HandleFunc("/stats", statsHandler)
-	// http.HandleFunc("/hello", hello)
-	http.HandleFunc("/", customNotFoundHandler)
+	// http.HandleFunc("/", customNotFoundHandler)
 
 	fmt.Println("Welcome to wheelx! Starting server on " + socket)
 	log.Printf("Starting server on %s\n", socket)

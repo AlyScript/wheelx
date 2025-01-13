@@ -7,3 +7,5 @@ Run with
 By default, the host `192.168.1.192` is used. This likely will not work for you, so you should use your own. To do this, you can use the `-i` flag
 
 `go run main.go -i <your_host>`
+
+You can also specify a port

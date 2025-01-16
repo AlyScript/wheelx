@@ -11,3 +11,7 @@ By default, the host `192.168.1.192` is used. This likely will not work for you,
 By default, wheelx uses port 8888. To change this, you should use the `-p` option
 
 `go run main.go -p <port>`
+
+wheelx benefits from several helpful endpoints which provide useful data.
+
+the `stats` endpoint will show the number of requests that the server has received.

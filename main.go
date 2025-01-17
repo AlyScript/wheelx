@@ -5,13 +5,14 @@ Author: Adam Aly
 */
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
-	"time"
 	"sync"
+	"time"
 )
 
 var (
@@ -66,6 +67,13 @@ func loggingFileServerHandler(next http.Handler) http.Handler {
 	})
 }
 
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+    response := map[string]string{"status": "ok"}
+    jsonResponse, _ := json.Marshal(response)
+    w.Header().Set("Content-Type", "application/json")
+    w.Write(jsonResponse)
+}
+
 func main() {
 
 	// Define a flag for the port number
@@ -94,6 +102,7 @@ func main() {
 	http.HandleFunc("/info", infoHandler)
 	http.HandleFunc("/time", timeHandler)
 	http.HandleFunc("/stats", statsHandler)
+	http.HandleFunc("/health", healthHandler)
 	// http.HandleFunc("/", customNotFoundHandler)
 
 	fmt.Println("Welcome to wheelx! Starting server on " + socket)

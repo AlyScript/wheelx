@@ -38,11 +38,6 @@ Takes two arguments, the response writer and the request.
 // 	fmt.Fprintf(w, "Hello, World!")
 // }
 
-func customNotFoundHandler(w http.ResponseWriter, r *http.Request) {
-    w.WriteHeader(http.StatusNotFound)
-    fmt.Fprintf(w, "404 - Page Not Found")
-}
-
 func infoHandler(w http.ResponseWriter, r *http.Request) {
 	uptime := time.Since(startTime)
 	requestCount++
@@ -103,7 +98,6 @@ func main() {
 	http.HandleFunc("/time", timeHandler)
 	http.HandleFunc("/stats", statsHandler)
 	http.HandleFunc("/health", healthHandler)
-	// http.HandleFunc("/", customNotFoundHandler)
 
 	fmt.Println("Welcome to wheelx! Starting server on " + socket)
 	log.Printf("Starting server on %s\n", socket)

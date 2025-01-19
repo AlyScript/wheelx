@@ -14,4 +14,4 @@ By default, wheelx uses port 8888. To change this, you should use the `-p` optio
 
 wheelx benefits from several helpful endpoints which provide useful data.
 
-the `stats` endpoint will show the number of requests that the server has received.
+the `stats` endpoint will show the number of requests that the server has received. Note that this value is reset with the server.

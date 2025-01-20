@@ -22,22 +22,6 @@ var (
 	mu 				sync.Mutex
 )
 
-/*
-This is the function that will be called when the user visits the page. Handlefunc takes two arguments, the path and the function to be called.
-Takes two arguments, the response writer and the request.
-*/
-// func hello(w http.ResponseWriter, r *http.Request) {
-// 	log.Printf("Request received from %s at %s\n", r.RemoteAddr, time.Now().Format((time.RFC3339)))
-
-// 	for name, values := range r.Header {
-// 		for _, value := range values {
-// 			fmt.Printf("%s: %s\n", name, value)
-// 		}
-// 	}
-// 	w.WriteHeader(http.StatusOK)
-// 	fmt.Fprintf(w, "Hello, World!")
-// }
-
 func infoHandler(w http.ResponseWriter, r *http.Request) {
 	uptime := time.Since(startTime)
 	requestCount++

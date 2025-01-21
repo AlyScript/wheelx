@@ -8,7 +8,7 @@ By default, the host `192.168.1.192` is used. This likely will not work for you,
 
 `go run main.go -i <your_host>`
 
-By default, wheelx uses port 8888. To change this, you should use the `-p` option
+By default, wheelx uses port 8888. To change this (you'll probably want to do this), you should use the `-p` option
 
 `go run main.go -p <port>`
 

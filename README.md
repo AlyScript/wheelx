@@ -6,7 +6,9 @@ wheelx is a very simple HTTP server which you can deploy on almost any device. I
 
 Run with
 
-`go run main.go`
+```go
+go run main.go
+```
 
 By default, the host `192.168.1.192` is used. This likely will not work for you, so you should use your own. To do this, you can use the `-i` option
 

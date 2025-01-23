@@ -1,5 +1,9 @@
 # wheelx (nginx's little cousin)
 
+```yaml
+wheelx is a very simple HTTP server which you can deploy on almost any device. It is extremely lightweight and insecure (so i recommend that you take great care with this) by design.
+```
+
 Run with
 
 `go run main.go`

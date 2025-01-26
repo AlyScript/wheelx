@@ -1,7 +1,7 @@
 # wheelx (nginx's little cousin)
 
 ```yaml
-wheelx is a very simple HTTP server which you can deploy on almost any device.
+wheelx is a very simple HTTP server with no dependencies which you can deploy on almost any device.
 It is extremely lightweight and insecure (seriously) by design.
 ```
 
